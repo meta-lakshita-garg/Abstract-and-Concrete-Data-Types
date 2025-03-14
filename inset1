@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public final class intSet1 {
+    private final ArrayList<Integer> dataSet;
+    private Map<Integer, Boolean> map;
+
+    // int[] arr = {4,3,2};
+
+    public intSet1(ArrayList<Integer> array) {
+        dataSet = new ArrayList<>();
+        map = new HashMap<>();
+        for (Integer item : array) {
+            if (!map.containsKey(item)) {
+                map.put(item, true);
+                dataSet.add(item);
+            }
+        }
+        System.out.println(dataSet);
+        System.out.println(map);
+    }
+
+    public final ArrayList<Integer> getValue() {
+        return dataSet;
+    }
+
+    public final Boolean isMember(Integer target) {
+        return map.containsKey(target);
+    }
+
+    public final int size() {
+        return map.size();
+    }
+
+    public final Boolean isSubSet(intSet1 array) {
+        for (Integer item : array.getValue()) {
+            if (!map.containsKey(item)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final ArrayList<Integer> getComplement(ArrayList<Integer>dataSet)
+    {
+            
+        ArrayList<Integer>complementset = new ArrayList<>();
+        for (Integer item : dataSet) {
+            if (!map.containsKey(item)) {
+                complementset.add(item);
+            }
+        }
+        return complementset;
+
+        
+    }
+
+    public final ArrayList<Integer> union(intSet1 set2)
+    {
+        return dataSet.addAll(set2);
+    }
+
+}
